@@ -1,7 +1,10 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -18,8 +21,13 @@ public class Homework16 extends BaseTest{
         String url = "https://qa.koel.app/";
         driver.get(url);
         //Registration Link
-        String regUrl = "https://qa.koel.app/registrion";
-
+        String regUrl = "https://qa.koel.app/registration";
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+        WebElement registrationLink = driver.findElement(By.cssSelector("[href = 'registration']"));
+        registrationLink.click();
+        // compare if reg link is equal to current link
+        Assert.assertEquals(driver.getCurrentUrl(), regUrl);
+        driver.quit();
 
     }
 
