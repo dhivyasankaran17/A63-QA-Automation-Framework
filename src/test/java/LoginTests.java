@@ -8,18 +8,21 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
-
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+    public void loginEmptyEmailPassword() throws InterruptedException {
+        provideEmail("");
+        providePassword("");
+        clickLoginBtn();
+        Thread.sleep(1000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    }
+
+    @Test
+    public void loginValidEmailPassword() throws InterruptedException {
+        provideEmail("demo@testpro.io");
+        providePassword("te$t$tudent");
+        clickLoginBtn();
+        Thread.sleep(1000);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+
     }
 }
