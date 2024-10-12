@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Homework18">
+<suite name="Homework19">
 
-    <test name="Homework18 Test" preserve-order="false">
+    <test name="Homework19 Test" preserve-order="false">
         <classes>
-            <class name="Homework18">
+            <class name="Homework19">
                 <methods>
-                    <include name="playSong"/>
+                    <include name="deletePlaylist"/>
                 </methods>
             </class>
         </classes>

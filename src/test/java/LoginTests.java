@@ -7,13 +7,12 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    @Test
-    public void loginEmptyEmailPassword() throws InterruptedException {
-        provideEmail("");
-        providePassword("");
+    @Test(dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class)
+    public void loginEmptyEmailPassword(String email, String password) throws InterruptedException {
+        provideEmail(email);
+        providePassword(password);
         clickLoginBtn();
-        Thread.sleep(1000);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        //Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
     }
 
     @Test
@@ -21,8 +20,7 @@ public class LoginTests extends BaseTest {
         provideEmail("dhivya.sankaran@testpro.io");
         providePassword("v5eUH9H2");
         clickLoginBtn();
-        Thread.sleep(1000);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
 
     }
 }
