@@ -14,8 +14,7 @@ public class Homework18 extends BaseTest{
         provideEmail("dhivya.sankaran@testpro.io");
         providePassword("v5eUH9H2");
         clickLoginBtn();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
+        Thread.sleep(2000);
         playNextBtn();
         validateSoundBar();
         Assert.assertTrue(validateSoundBar());
@@ -23,13 +22,13 @@ public class Homework18 extends BaseTest{
     }
 
     public boolean validateSoundBar() {
-        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        WebElement soundBar = driver.findElement(By.cssSelector("span.play"));
         return soundBar.isDisplayed();
     }
 
     public void playNextBtn() throws InterruptedException{
 
-        WebElement playNext = driver.findElement(By.cssSelector("//i[@data-testid ='play-next-btn']"));
+        WebElement playNext = driver.findElement(By.xpath("//footer[@id='mainFooter']//i[@data-testid='play-next-btn']"));
         playNext.click();
         Thread.sleep(2000);
 
