@@ -18,7 +18,6 @@ public class AddSongToPlaylistTest extends BaseTest{
         clickFirstSong();
         clickAddTo();
         selectPlaylist();
-        Thread.sleep(3000);
         Assert.assertEquals(getSuccessMsg(), expectedSongAddedMsg);
 
     }
@@ -28,20 +27,22 @@ public class AddSongToPlaylistTest extends BaseTest{
         return successMsg.getText();
     }
 
-    public void selectPlaylist() {
-        WebElement playlist = driver.findElement(By.cssSelector("section[id='songResultsWrapper'] li[class='favorites']"));
+    public void selectPlaylist() throws InterruptedException{
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Playlist1')]"));
         playlist.click();
+        Thread.sleep(2000);
     }
 
     public void clickAddTo() {
-        WebElement addTo = driver.findElement(By.xpath("//button[@title='Add selected songs to…']"));
+        WebElement addTo = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn']"));
         addTo.click();
 
     }
 
-    public void clickFirstSong() {
+    public void clickFirstSong() throws InterruptedException {
         WebElement firstSong = driver.findElement(By.xpath("//*[@id=\"songResultsWrapper\"]/div/div/div[1]/table/tr[1]"));
         firstSong.click();
+        Thread.sleep(2000);
     }
 
     public void viewAllSongs() {
