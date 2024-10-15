@@ -13,21 +13,17 @@ import java.util.concurrent.TimeUnit;
 public class Homework20 extends BaseTest{
     @Test
     public void deletePlaylist(){
-        String expectedDeletedPlaylistMsg = "Deleted playlist \"Playlist1.\"";
         provideEmail("dhivya.sankaran@testpro.io");
         providePassword("v5eUH9H2");
         clickLoginBtn();
 
-        if(doesPlaylistExist()) {
+        if(!doesPlaylistExist()) {
             // If there is a playlist then delete it
-            selectPlaylist();
+            createPlaylist();
 
         }
-        else
-        {
-            createPlaylist();
-            selectPlaylist();
-        }
+        selectAndDeletePlaylist();
+
         By locator = By.xpath("//div[@class='success show']");
         Assert.assertTrue(driver.findElements(locator).size()>0, "Playlist was deleted");
 
@@ -51,7 +47,7 @@ public class Homework20 extends BaseTest{
 
     }
 
-    public void selectPlaylist() {
+    public void selectAndDeletePlaylist() {
 
         WebElement playList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//a[contains(text(), 'Playlist1')]")));
         playList.click();

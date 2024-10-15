@@ -12,7 +12,7 @@ public class LoginTests extends BaseTest {
         provideEmail(email);
         providePassword(password);
         clickLoginBtn();
-        //Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
+
     }
 
     @Test
