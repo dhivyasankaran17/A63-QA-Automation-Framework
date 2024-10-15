@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    @Test(dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class)
+    @Test
     public void loginEmptyEmailPassword(String email, String password) throws InterruptedException {
         provideEmail(email);
         providePassword(password);

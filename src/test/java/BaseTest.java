@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -14,14 +16,7 @@ public class BaseTest {
     public WebDriverWait wait = null;
     public String url = null;
     public String homePageURL = null;
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][]{
-                {"invalid@testpro.io","invalidpassword"},
-                {"demo@testpro.io",""},
-                {"",""}
-        };
-    };
+
 
     @BeforeSuite
     static void setupClass() {
@@ -50,19 +45,18 @@ public class BaseTest {
         driver.get(url);
     }
     public void provideEmail(String email){
-        WebElement emailField = driver.findElement(By.cssSelector("input[type ='email']"));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type ='email']")));
         emailField.clear();
         emailField.sendKeys(email);
     }
     public void providePassword(String password){
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type ='password']"));
+        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type ='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
 
     }
-    public void clickLoginBtn() throws InterruptedException{
-        WebElement loginBtn = driver.findElement(By.cssSelector("Button[type='submit']"));
+    public void clickLoginBtn(){
+        WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("Button[type='submit']")));
         loginBtn.click();
-        Thread.sleep(2000);
     }
 }

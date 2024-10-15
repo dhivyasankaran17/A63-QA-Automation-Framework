@@ -27,6 +27,6 @@ task testSmoke(type: Test) {
 }
 task testHomeWork(type: Test) {
     useTestNG() {
-        suites "src/test/resources/Homework19.xml"
+        suites "src/test/resources/Homework20.xml"
     }
 }
